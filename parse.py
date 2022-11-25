@@ -1,5 +1,4 @@
 import re
-import json
 
 def extract_address(sentence):
     adresses = []
@@ -17,16 +16,25 @@ def extract_address(sentence):
                 
     return adresses
 
-with open("a.json", "r") as f:
-    data = json.load(f)
-    for item in data:
-        address = set(extract_address(item["name"]))
-        address = address.union(extract_address(item["description"]))
+def extract_address_from_item(item):
+    # Simple text in name and description(bio)
+    address = set(extract_address(item["name"]))
+    address = address.union(extract_address(item["description"]))
 
-
-
-        if(len(address) > 0):
-            print(address, item["username"])
+    # Links in name and description(bio)
+    if "entities" in item:
+        entities = item["entities"]
+        if "description" in entities and "urls" in entities["description"]:
+            urls = entities["description"]["urls"]
+            for url in urls:
+                if "expanded_url" in url:
+                    address = address.union(extract_address(url["expanded_url"]))
+        # if "url" in entities and "urls" in entities["url"]:
+        #     urls = entities["url"]["urls"]
+        #     for url in urls:
+        #         if "expanded_url" in url:
+        #             address = address.union(extract_address(url["expanded_url"]))
+    return address
 
 
 
