@@ -21,31 +21,44 @@ def get_followers(username):
     return followers
 
 
+def get_resolved_address(ns, username):
+    address = ns.address(username)
+    if address == None:
+        return "-"
+    return str(address)
+
+
 def get_wallet_address(ns, enseth):
     wallet_address = ""
     for ens in enseth:
         if wallet_address == "":
-            wallet_address = ns.address(ens)
+            wallet_address = get_resolved_address(ns, ens)
         else:
-            wallet_address += " | " + ns.address(ens)
+            wallet_address += " | " + get_resolved_address(ns, ens)
     return wallet_address
 
 
 def save_followers_wallet(ns, followers, username):
+    count = 0
     next_print = 5000  # print every 5000/10000 followers
+    print("Extracting for {} with {} followers.".format(username, len(followers)))
     with open("out/" + username + ".csv", "a") as f:
         for i, follower in enumerate(followers):
             # Print progress
             if i > next_print:
                 print("Extracted {} follower's wallet addresses".format(i))
                 next_print += 10000
+
             # Extract wallet ens
             address = parse.extract_address_from_item(follower)
             if len(address) == 0:
                 continue
-            # Get wallet address
+            count += len(address)
+
             wallet_address = get_wallet_address(ns, address)
             f.write("{},{},{}\n".format(username, follower["username"], wallet_address))
+
+    print("Total Extracted {} follower's wallet addresses of {}".format(count, username))
 
 
 # CSV Header: Account, Follower Account, Wallet Address
