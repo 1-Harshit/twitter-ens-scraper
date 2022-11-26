@@ -15,9 +15,9 @@ if not os.path.exists("out"):
     os.makedirs("out")
 
 # scrape followers
-# scrape.pre_compute_followers(usernames)
+scrape.pre_compute_followers(usernames)
 
 # extract wallet addresses
-wallet.extract_wallet_addresses(usernames[:1])
+wallet.extract_wallet_addresses(usernames)
 
 print("Completed!")

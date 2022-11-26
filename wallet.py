@@ -22,9 +22,16 @@ def get_followers(username):
 
 
 def get_resolved_address(ns, username):
-    address = ns.address(username)
+    print(username, end=" ")
+    address = None
+
+    try:
+        address = ns.address(username)
+    except Exception as e:
+        print(e)
     if address == None:
         return ""
+    print(address)
     return str(address)
 
 
@@ -45,7 +52,7 @@ def save_followers_wallet(ns, followers, username):
     count = 0
     next_print = 5000  # print every 5000/10000 followers
     print("Extracting for {} with {} followers.".format(username, len(followers)))
-    with open("out/" + username + ".csv", "a") as f:
+    with open("out/wallet.csv", "a") as f:
         for i, follower in enumerate(followers):
             # Print progress
             if i > next_print:
@@ -62,6 +69,7 @@ def save_followers_wallet(ns, followers, username):
             if wallet_address == "":
                 continue
             f.write("{},{},{}\n".format(username, follower["username"], wallet_address))
+            f.flush()
 
     print("Total Extracted {} follower's wallet addresses of {}".format(count, username))
 
@@ -70,12 +78,12 @@ def save_followers_wallet(ns, followers, username):
 def extract_wallet_addresses(usernames):
     ns = get_ns_instance()
 
+    with open("out/wallet.csv", "a") as f:
+        f.write("Account,Follower Account,Wallet Address\n")
+
     print("Initiating extracting wallet addresses")
     for username in usernames:
         followers = get_followers(username)
-        # Print csv headers
-        with open("out/" + username + ".csv", "a") as f:
-            f.write("Account,Follower Account,Wallet Address\n")
         # Extract wallet addresses and save to csv
         save_followers_wallet(ns, followers, username)
     print("Completed extracting wallet addresses")

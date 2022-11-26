@@ -34,7 +34,8 @@
 
 ## Observation
 
-Occurences of `.eth` in entire [user model](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/user) is either in name, description or as url in description or profile url and location. Per the instruction code only scrapes for name and bio but could easily be scaled to all aforementioned paramenters.
+- Occurences of `.eth` in entire [user model](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/user) is either in name, description or as url in description or profile url and location. Per the instruction code only scrapes for name and bio but could easily be scaled to all aforementioned paramenters.
+- eth addresses are only having alphanumeric characters and period(.) and hyphen(-) ending with .eth. If there are more allowed charecters, regex can be updated.
 
 ## Author
 
