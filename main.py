@@ -3,6 +3,7 @@ import wallet
 import os
 
 usernames = [
+    "the3vedi",
     "thedigitaldogs",
     "CryptoDickbutts",
     "0n1force",
@@ -14,9 +15,10 @@ usernames = [
 if not os.path.exists("out"):
     os.makedirs("out")
 
-print("Initiating scraping of followers")
+# scrape followers
 scrape.pre_compute_followers(usernames)
-print("Completed scraping of followers")
 
-print("Initiating extracting wallet addresses")
+# extract wallet addresses
 wallet.extract_wallet_addresses(usernames)
+
+print("Completed!")

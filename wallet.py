@@ -32,11 +32,18 @@ def get_wallet_address(ns, enseth):
 
 
 def save_followers_wallet(ns, followers, username):
+    next_print = 5000  # print every 5000/10000 followers
     with open("out/" + username + ".csv", "a") as f:
-        for follower in followers:
+        for i, follower in enumerate(followers):
+            # Print progress
+            if i > next_print:
+                print("Extracted {} follower's wallet addresses".format(i))
+                next_print += 10000
+            # Extract wallet ens
             address = parse.extract_address_from_item(follower)
             if len(address) == 0:
                 continue
+            # Get wallet address
             wallet_address = get_wallet_address(ns, address)
             f.write("{},{},{}\n".format(username, follower["username"], wallet_address))
 
@@ -44,8 +51,13 @@ def save_followers_wallet(ns, followers, username):
 # CSV Header: Account, Follower Account, Wallet Address
 def extract_wallet_addresses(usernames):
     ns = get_ns_instance()
+
+    print("Initiating extracting wallet addresses")
     for username in usernames:
         followers = get_followers(username)
+        # Print csv headers
         with open("out/" + username + ".csv", "a") as f:
             f.write("Account,Follower Account,Wallet Address\n")
+        # Extract wallet addresses and save to csv
         save_followers_wallet(ns, followers, username)
+    print("Completed extracting wallet addresses")

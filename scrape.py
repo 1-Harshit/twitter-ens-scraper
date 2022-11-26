@@ -48,6 +48,7 @@ def get_followers_page(user_id, next_token=None):
 def get_followers(user_id):
     followers = []
     next_token = None
+    next_print = 5000 # print every 5000/10000 followers
     while True:
         response = get_followers_page(user_id, next_token)
         followers.extend(response["data"])
@@ -55,6 +56,10 @@ def get_followers(user_id):
             next_token = response["meta"]["next_token"]
         else:
             break
+        # Print progress
+        if len(followers) > next_print:
+            print("Scraped {} followers".format(len(followers)))
+            next_print += 10000
 
     return followers
 
@@ -66,9 +71,11 @@ def save_followers(followers, filename):
 
 
 def pre_compute_followers(usernames):
-
+    print("Initiating scraping of followers")
     # get the followers for each account
     for username in usernames:
         user_id = find_user_id(username)
         followers = get_followers(user_id)
+        print("Completed scraping {} followers for {}".format(len(followers), username))
         save_followers(followers, username)
+    print("Completed scraping of followers")
