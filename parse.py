@@ -11,7 +11,7 @@ def extract_address(sentence):
     if ".eth" in sentence:
         words = re.split("#", sentence)
         for word in words:
-            if word.endswith(".eth"):
+            if word.endswith(".eth") and len(word) > 4:
                 adresses.append(word)
                 
     return adresses
