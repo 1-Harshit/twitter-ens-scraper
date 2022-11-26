@@ -7,7 +7,7 @@ import parse
 
 def get_ns_instance():
     # To set your environment variables in your terminal run the following line:
-    # export 'PROVIDER_URL'='<your_bhttp_provider_url>'
+    # export 'PROVIDER_URL'='<your_http_provider_url>'
     provider_url = os.environ.get("PROVIDER_URL")
     w3 = Web3(Web3.HTTPProvider(provider_url, request_kwargs={"timeout": 60}))
     ns = ENS.fromWeb3(w3)
