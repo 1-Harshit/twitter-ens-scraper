@@ -1,4 +1,6 @@
 import scrape
+import wallet
+import os
 
 usernames = [
     "thedigitaldogs",
@@ -8,5 +10,13 @@ usernames = [
     "overlord_xyz",
 ]
 
-scrape.pre_compute_followers(usernames)
+# create the out folder if it doesn't exist
+if not os.path.exists("out"):
+    os.makedirs("out")
 
+print("Initiating scraping of followers")
+scrape.pre_compute_followers(usernames)
+print("Completed scraping of followers")
+
+print("Initiating extracting wallet addresses")
+wallet.extract_wallet_addresses(usernames)

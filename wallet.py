@@ -42,7 +42,7 @@ def save_followers_wallet(ns, followers, username):
 
 
 # CSV Header: Account, Follower Account, Wallet Address
-def compute_wallet_address(usernames):
+def extract_wallet_addresses(usernames):
     ns = get_ns_instance()
     for username in usernames:
         followers = get_followers(username)
