@@ -3,7 +3,6 @@ import wallet
 import os
 
 usernames = [
-    "the3vedi",
     "thedigitaldogs",
     "CryptoDickbutts",
     "0n1force",
