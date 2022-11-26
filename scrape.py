@@ -61,7 +61,7 @@ def get_followers(user_id):
 
 # save struct as json
 def save_followers(followers, filename):
-    with open(filename + ".json", "w") as f:
+    with open("out/" + filename + ".json", "w") as f:
         json.dump(followers, f, indent=4)
 
 
