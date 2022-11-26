@@ -76,6 +76,6 @@ def pre_compute_followers(usernames):
     for username in usernames:
         user_id = find_user_id(username)
         followers = get_followers(user_id)
-        print("Completed scraping {} followers for {}".format(len(followers), username))
         save_followers(followers, username)
+        print("Completed scraping {} followers for {}".format(len(followers), username))
     print("Completed scraping of followers")

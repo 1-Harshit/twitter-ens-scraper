@@ -1,5 +1,6 @@
 import re
 
+
 def extract_address(sentence):
     adresses = []
     # remove all non ascii characters
@@ -13,8 +14,9 @@ def extract_address(sentence):
         for word in words:
             if word.endswith(".eth") and len(word) > 4:
                 adresses.append(word)
-                
+
     return adresses
+
 
 def extract_address_from_item(item):
     # Simple text in name and description(bio)
@@ -35,6 +37,3 @@ def extract_address_from_item(item):
         #         if "expanded_url" in url:
         #             address = address.union(extract_address(url["expanded_url"]))
     return address
-
-
-
