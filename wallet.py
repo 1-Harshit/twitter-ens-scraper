@@ -24,17 +24,20 @@ def get_followers(username):
 def get_resolved_address(ns, username):
     address = ns.address(username)
     if address == None:
-        return "-"
+        return ""
     return str(address)
 
 
 def get_wallet_address(ns, enseth):
     wallet_address = ""
     for ens in enseth:
+        addr = get_resolved_address(ns, ens)
+        if len(addr) == 0:
+            continue
         if wallet_address == "":
-            wallet_address = get_resolved_address(ns, ens)
+            wallet_address = addr
         else:
-            wallet_address += " | " + get_resolved_address(ns, ens)
+            wallet_address += " | " + addr
     return wallet_address
 
 
@@ -56,6 +59,8 @@ def save_followers_wallet(ns, followers, username):
             count += len(address)
 
             wallet_address = get_wallet_address(ns, address)
+            if wallet_address == "":
+                continue
             f.write("{},{},{}\n".format(username, follower["username"], wallet_address))
 
     print("Total Extracted {} follower's wallet addresses of {}".format(count, username))
