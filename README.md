@@ -21,7 +21,7 @@
 1.  Clone the repo.
 1.  Create a virtual environment. `python -m venv venv`
 1.  Install the requirements. `pip install -r requirements.txt`
-1.  Provide the Twitter API credentials and a remote eth provider.
+1.  Provide the Twitter API credentials and a remote eth node.
     ```sh
     # To set your environment variables in your terminal run the following lines:
     export BEARER_TOKEN='<your_bearer_token>'
@@ -30,7 +30,7 @@
 1.  If you want to scrape the followers of a different account, change the `usernames` variable in `main.py`.
 1.  Run `main.py`. Using command: `python main.py`
 1.  The followers data of users will be stored in `out/<username>.json`.
-1.  The wallet addresses will be stored in `out/<username>.csv`.
+1.  The wallet addresses will be stored in `out/wallet.csv`.
 
 ## Observation
 
