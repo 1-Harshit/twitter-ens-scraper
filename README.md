@@ -41,6 +41,12 @@
 
 - [Harshit Raj](https://harshitraj.me)
 
+## References
+
+- [Twitter API](https://developer.twitter.com/en/docs/twitter-api)
+- [ENS Domains](https://docs.ens.domains/)
+- [Quicknode](https://www.quicknode.com/)
+
 ## Output
 
 - For the given usernames, the output is stored in `out` folder. Available [here](https://iitk-my.sharepoint.com/:f:/g/personal/harshitr20_iitk_ac_in/EpwpR4fxW9xOkPUcSGoQBgABIz5CTX0jixo5uv0u4OAIVA?e=I84Sg2).

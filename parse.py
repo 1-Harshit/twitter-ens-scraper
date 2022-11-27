@@ -31,6 +31,7 @@ def extract_address_from_item(item):
             for url in urls:
                 if "expanded_url" in url:
                     address = address.union(extract_address(url["expanded_url"]))
+        # Don't have to check for URL/Location .eth entries
         # if "url" in entities and "urls" in entities["url"]:
         #     urls = entities["url"]["urls"]
         #     for url in urls:
