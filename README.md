@@ -40,3 +40,8 @@
 ## Author
 
 - [Harshit Raj](https://harshitraj.me)
+
+## Output
+
+- For the given usernames, the output is stored in `out` folder. Available [here](https://iitk-my.sharepoint.com/:f:/g/personal/harshitr20_iitk_ac_in/EpwpR4fxW9xOkPUcSGoQBgABIz5CTX0jixo5uv0u4OAIVA?e=I84Sg2).
+- All wallet addresses are also stored in [google sheets](https://docs.google.com/spreadsheets/d/1PcE9TajBa4ZnutE34xkDWNvwdIvTMZpfF6-zm6KGx74/edit?usp=sharing).
