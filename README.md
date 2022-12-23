@@ -1,4 +1,4 @@
-# blaze-take-home
+# Twitter Web3 address scraper
 
 ## Task
 
